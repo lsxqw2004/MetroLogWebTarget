@@ -1,6 +1,6 @@
 ﻿namespace MetroLogWebTarget.Domain
 {
-    public class Environment
+    public class LogEnvironment
     {
 
         public int Id { get; set; }

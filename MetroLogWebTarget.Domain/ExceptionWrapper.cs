@@ -1,4 +1,4 @@
-﻿namespace MetroLogWebTarget.Web.Models
+﻿namespace MetroLogWebTarget.Domain
 {
     public class ExceptionWrapper
     {

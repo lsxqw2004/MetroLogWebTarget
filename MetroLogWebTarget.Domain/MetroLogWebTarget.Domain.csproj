@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environment.cs" />
-    <Compile Include="Event.cs" />
+    <Compile Include="ExceptionWrapper.cs" />
+    <Compile Include="LogEnvironment.cs" />
+    <Compile Include="LogEvent.cs" />
+    <Compile Include="LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

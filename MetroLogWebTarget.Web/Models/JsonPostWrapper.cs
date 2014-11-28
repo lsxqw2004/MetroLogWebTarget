@@ -1,23 +1,13 @@
-﻿using Newtonsoft.Json;
-using WebTargetSample.Json;
-using WebTargetSample.Model;
+﻿using System.Collections.Generic;
+using MetroLogWebTarget.Domain;
 
 namespace MetroLogWebTarget.Web.Models
 {
     public class JsonPostWrapper
     {
-        [JsonConverter(typeof(LoggingEnvironmentConverter))]
-        public LoggingEnvironment Environment { get; set; }
 
-        public LogEventInfo[] Events { get; set; }
+        public LogEnvironment Environment { get; set; }
 
-        public JsonPostWrapper()
-        {
-        }
-
-        public static JsonPostWrapper FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<JsonPostWrapper>(json);
-        }
+        public List<LogEvent> Events { get; set; }
     }
 }

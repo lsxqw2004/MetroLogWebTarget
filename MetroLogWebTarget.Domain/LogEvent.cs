@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MetroLogWebTarget.Domain
 {
-    public class Event
+    public class LogEvent
     {
         public int Id { get; set; }
 
@@ -14,17 +14,15 @@ namespace MetroLogWebTarget.Domain
 
         public int SequenceId { get; set; }
 
-
         public string Logger { get; set; }
 
-
-        public string Level { get; set; }
+        public LogLevel Level { get; set; }
 
         public string Message { get; set; }
 
-        public string Exception { get; set; }
+        public ExceptionWrapper Exception { get; set; }
 
-        public DateTime TimeStamp { get; set; }
+        public DateTimeOffset TimeStamp { get; set; }
 
     }
 }
