@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MetroLogWebTarget.Domain
 {
-    public class LogEvent
+    public class LogEvent:BaseEntity
     {
-        public int Id { get; set; }
 
         public int BatId { get; set; }
 

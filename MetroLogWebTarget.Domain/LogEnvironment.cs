@@ -1,9 +1,8 @@
 ﻿namespace MetroLogWebTarget.Domain
 {
-    public class LogEnvironment
+    public class LogEnvironment:BaseEntity
     {
 
-        public int Id { get; set; }
 
         public string PackageArchitecture { get; set; }
 
