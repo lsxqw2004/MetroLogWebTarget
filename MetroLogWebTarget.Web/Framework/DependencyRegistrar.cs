@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Autofac;
 using Galenical.Core.Caching;
+using MetroLogWebTarget.Core.Caching;
 using MetroLogWebTarget.Data;
 using MetroLogWebTarget.Domain;
 using MetroLogWebTarget.Service;

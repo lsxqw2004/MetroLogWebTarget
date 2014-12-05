@@ -58,13 +58,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MetroLog.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\MetroLogWebTarget.Domain\MetroLogWebTarget.Domain.csproj">
       <Project>{282BBBBF-9649-48AA-9828-16783C728EB4}</Project>
       <Name>MetroLogWebTarget.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MetroLog.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

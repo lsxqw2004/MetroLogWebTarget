@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Caching;
 using System.Text.RegularExpressions;
+using Galenical.Core.Caching;
 
-namespace Galenical.Core.Caching
+namespace MetroLogWebTarget.Core.Caching
 {
     /// <summary>
     /// Represents a manager for caching between HTTP requests (long term caching)
