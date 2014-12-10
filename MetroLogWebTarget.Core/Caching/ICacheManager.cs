@@ -1,4 +1,4 @@
-namespace Galenical.Core.Caching
+namespace MetroLogWebTarget.Core.Caching
 {
     /// <summary>
     /// 缓存管理器接口

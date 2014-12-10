@@ -1,15 +1,16 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using MetroLogWebTarget.Domain;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MetroLogWebTarget.Data
 {
-    public class MetroLogContext : DbContext, IDbContext
+    public class MetroLogDbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
-        public MetroLogContext()
+        public MetroLogDbContext(): base("DefaultConnection")
         {
             // Turn off the Migrations, (NOT a code first Db)
-            Database.SetInitializer<MetroLogContext>(null);
+            Database.SetInitializer<MetroLogDbContext>(null);
         }
 
         public DbSet<LogEnvironment> LogEnvironments { get; set; }
@@ -25,5 +26,11 @@ namespace MetroLogWebTarget.Data
         {
             return base.Set<TEntity>();
         }
-    } 
+        
+        public static MetroLogDbContext Create()
+        {
+            return new MetroLogDbContext();
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Galenical.Core.Caching;
+using MetroLogWebTarget.Core.Caching;
 using MetroLogWebTarget.Data;
 using MetroLogWebTarget.Domain;
 using Microsoft.AspNet.Identity;
@@ -14,7 +15,7 @@ namespace MetroLogWebTarget.Service
     /// User service
     /// </summary>
     public partial class UserStore<T> :
-        IUserStore<T,int>,
+        IUserStore<T, int>,
         IUserClaimStore<T, int>,
         IUserRoleStore<T, int>,
         IUserPasswordStore<T, int>,
@@ -89,7 +90,7 @@ namespace MetroLogWebTarget.Service
                 ClaimType = claim.Type,
                 ClaimValue = claim.Value
             });
-            return Task.Run(()=>_userRepository.Update(userCtx));
+            return Task.Run(() => _userRepository.Update(userCtx));
         }
 
         public Task<IList<Claim>> GetClaimsAsync(T user)
@@ -99,7 +100,7 @@ namespace MetroLogWebTarget.Service
                 throw new ArgumentNullException("user");
 
             IList<Claim> result = user.Claims.Select(userClaim => new Claim(userClaim.ClaimType, userClaim.ClaimValue)).ToList();
-            
+
             return Task.FromResult(result);
         }
 
@@ -116,7 +117,7 @@ namespace MetroLogWebTarget.Service
             {
                 userCtx.Claims.Remove(identityUserClaim);
             }
-            return Task.Run(()=>_userRepository.Update(userCtx));
+            return Task.Run(() => _userRepository.Update(userCtx));
         }
 
         #endregion
@@ -126,7 +127,7 @@ namespace MetroLogWebTarget.Service
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            return _userRepository.InsertAsync(user);
+            return Task.Run(() => _userRepository.Insert(user));
         }
 
         public Task DeleteAsync(T user)
@@ -137,12 +138,12 @@ namespace MetroLogWebTarget.Service
             if (user.IsSystemAccount)
                 throw new Exception("不能删除内置管理员账户");
 
-            return _userRepository.DeleteAsync(user);
+            return Task.Run(() => _userRepository.Delete(user));
         }
 
         public Task<T> FindByIdAsync(int userId)
         {
-            return _userRepository.GetByIdAsync(userId) as Task<T>;
+            return Task.FromResult(_userRepository.GetById(userId) as T);
         }
 
         public Task<T> FindByNameAsync(string userName)
@@ -159,7 +160,7 @@ namespace MetroLogWebTarget.Service
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            return _userRepository.UpdateAsync(user);
+            return Task.Run(() => _userRepository.Update(user));
         }
 
         public void Dispose()
@@ -188,7 +189,7 @@ namespace MetroLogWebTarget.Service
 
             if (role == null) throw new Exception("角色不存在");
             userCtx.UserRoles.Add(role);
-            return _userRepository.UpdateAsync(userCtx);
+            return Task.Run(() => _userRepository.Update(userCtx));
         }
 
         public Task RemoveFromRoleAsync(T user, string roleName)
@@ -198,7 +199,7 @@ namespace MetroLogWebTarget.Service
 
             if (role == null) throw new Exception("角色不存在");
             userCtx.UserRoles.Remove(role);
-            return _userRepository.UpdateAsync(userCtx);
+            return Task.Run(() => _userRepository.Update(userCtx));
         }
 
         public Task<IList<string>> GetRolesAsync(T user)
@@ -224,7 +225,7 @@ namespace MetroLogWebTarget.Service
                 throw new ArgumentNullException("user");
 
             user.PasswordHash = passwordHash;
-            return _userRepository.UpdateAsync(user);
+            return Task.Run(() => _userRepository.Update(user));
         }
 
         public Task<string> GetPasswordHashAsync(T user)
@@ -251,7 +252,7 @@ namespace MetroLogWebTarget.Service
                 throw new ArgumentNullException("user");
 
             user.SecurityStamp = stamp;
-            return _userRepository.UpdateAsync(user);
+            return Task.Run(() => _userRepository.Update(user));
         }
 
         public Task<string> GetSecurityStampAsync(T user)

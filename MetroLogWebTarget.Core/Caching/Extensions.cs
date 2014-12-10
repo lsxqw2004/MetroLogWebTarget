@@ -1,4 +1,5 @@
 using System;
+using MetroLogWebTarget.Core.Caching;
 
 namespace Galenical.Core.Caching
 {

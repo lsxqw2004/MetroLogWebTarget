@@ -22,7 +22,7 @@ namespace MetroLogWebTarget.Data
             }
         }
 
-        public SlEfRepository(MetroLogContext context)
+        public SlEfRepository(MetroLogDbContext context)
         {
             Context = context;
         }

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="ExceptionWrapper.cs" />
+    <Compile Include="IdentityModels.cs" />
     <Compile Include="LogEnvironment.cs" />
     <Compile Include="LogEvent.cs" />
     <Compile Include="LogLevel.cs" />
