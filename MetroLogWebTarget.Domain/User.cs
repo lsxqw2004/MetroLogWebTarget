@@ -30,6 +30,8 @@ namespace MetroLogWebTarget.Domain
             get { return _userClaims ?? (_userClaims = new List<UserClaim>()); }
         }
 
+        public string Email { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User,int> manager)
         {
             // 请注意，authenticationType 必须与 CookieAuthenticationOptions.AuthenticationType 中定义的相应项匹配
