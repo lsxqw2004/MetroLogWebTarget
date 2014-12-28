@@ -33,9 +33,10 @@ namespace MetroLogWebTarget.Web
                 {
                     // 当用户登录时使应用程序可以验证安全戳。
                     // 这是一项安全功能，当你更改密码或者向帐户添加外部登录名时，将使用此功能。
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User,int>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
+                        getUserIdCallback: (claim) => int.Parse(claim.GetUserId()))
                 }
             });            
         }

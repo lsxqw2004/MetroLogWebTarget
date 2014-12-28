@@ -78,9 +78,6 @@
     <Compile Include="Caching\Extensions.cs" />
     <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="Caching\MemoryCacheManager.cs" />
-    <Compile Include="DependencyManagement\AutofacRequestLifetimeHttpModule.cs" />
-    <Compile Include="DependencyManagement\ComponentLifeStyle.cs" />
-    <Compile Include="DependencyManagement\ContainerConfigurer.cs" />
     <Compile Include="DependencyManagement\ContainerManager.cs" />
     <Compile Include="DependencyManagement\IDependencyRegistrar.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
