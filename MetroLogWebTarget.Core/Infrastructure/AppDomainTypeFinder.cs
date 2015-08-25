@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-#endregion
 
 namespace MetroLogWebTarget.Core.Infrastructure
 {
@@ -76,13 +73,8 @@ namespace MetroLogWebTarget.Core.Infrastructure
         }
 
         /// <summary>
-        ///     要被查找的dll的名称规则。为了方便此属性默认被设置为匹配全部，为了提高性能you might want to configure a pattern that includes assemblies and your
-        ///     own.
+        ///  
         /// </summary>
-        /// <remarks>
-        ///     If you change this so that LCM assemblies arn't investigated (e.g. by not including something like "^LCM|..."
-        ///     you may break core functionality.
-        /// </remarks>
         public string AssemblyRestrictToLoadingPattern
         {
             get { return assemblyRestrictToLoadingPattern; }
@@ -207,14 +199,13 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
         public IEnumerable<Assembly> FindAssembliesWithAttribute<T>(IEnumerable<Assembly> assemblies)
         {
-            //check if we've already searched this assembly);)
             if (!_assemblyAttributesSearched.Contains(typeof (T)))
             {
                 var foundAssemblies = (from assembly in assemblies
                     let customAttributes = assembly.GetCustomAttributes(typeof (T), false)
                     where customAttributes.Any()
                     select assembly).ToList();
-                //now update the cache
+
                 _assemblyAttributesSearched.Add(typeof (T));
                 foreach (var a in foundAssemblies)
                 {
@@ -222,7 +213,6 @@ namespace MetroLogWebTarget.Core.Infrastructure
                 }
             }
 
-            //We must do a ToList() here because it is required to be serializable when using other app domains.
             return _attributedAssemblies
                 .Where(x => x.PluginAttributeType.Equals(typeof (T)))
                 .Select(x => x.Assembly)
@@ -240,8 +230,6 @@ namespace MetroLogWebTarget.Core.Infrastructure
             return FindAssembliesWithAttribute<T>(assemblies);
         }
 
-        /// <summary>Gets tne assemblies related to the current implementation.</summary>
-        /// <returns>A list of assemblies that should be loaded by the LCM factory.</returns>
         public virtual IList<Assembly> GetAssemblies()
         {
             var addedAssemblyNames = new List<string>();
@@ -258,11 +246,6 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
         #region Utilities
 
-        /// <summary>
-        ///     Iterates all assemblies in the AppDomain and if it's name matches the configured patterns add it to our list.
-        /// </summary>
-        /// <param name="addedAssemblyNames"></param>
-        /// <param name="assemblies"></param>
         private void AddAssembliesInAppDomain(List<string> addedAssemblyNames, List<Assembly> assemblies)
         {
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -278,11 +261,6 @@ namespace MetroLogWebTarget.Core.Infrastructure
             }
         }
 
-        /// <summary>
-        ///     Adds specificly configured assemblies.
-        /// </summary>
-        /// <param name="addedAssemblyNames"></param>
-        /// <param name="assemblies"></param>
         protected virtual void AddConfiguredAssemblies(List<string> addedAssemblyNames, List<Assembly> assemblies)
         {
             foreach (string assemblyName in AssemblyNames)
@@ -296,44 +274,20 @@ namespace MetroLogWebTarget.Core.Infrastructure
             }
         }
 
-        /// <summary>
-        ///     Check if a dll is one of the shipped dlls that we know don't need to be investigated.
-        /// </summary>
-        /// <param name="assemblyFullName">
-        ///     The name of the assembly to check.
-        /// </param>
-        /// <returns>
-        ///     True if the assembly should be loaded into LCM.
-        /// </returns>
+
         public virtual bool Matches(string assemblyFullName)
         {
             return !Matches(assemblyFullName, AssemblySkipLoadingPattern)
                    && Matches(assemblyFullName, AssemblyRestrictToLoadingPattern);
         }
 
-        /// <summary>
-        ///     Check if a dll is one of the shipped dlls that we know don't need to be investigated.
-        /// </summary>
-        /// <param name="assemblyFullName">
-        ///     The assembly name to match.
-        /// </param>
-        /// <param name="pattern">
-        ///     The regular expression pattern to match against the assembly name.
-        /// </param>
-        /// <returns>
-        ///     True if the pattern matches the assembly name.
-        /// </returns>
+
         protected virtual bool Matches(string assemblyFullName, string pattern)
         {
             return Regex.IsMatch(assemblyFullName, pattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
         }
 
-        /// <summary>
-        ///     Makes sure matching assemblies in the supplied folder are loaded in the app domain.
-        /// </summary>
-        /// <param name="directoryPath">
-        ///     The physical path to a directory containing dlls to load in the app domain.
-        /// </param>
+
         protected virtual void LoadMatchingAssemblies(string directoryPath)
         {
             var loadedAssemblyNames = new List<string>();

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace WebApplication1.Models
+namespace MetroLogWebTarget.Web.Models
 {
     public class IndexViewModel
     {

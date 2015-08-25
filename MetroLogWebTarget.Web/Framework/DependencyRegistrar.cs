@@ -19,6 +19,7 @@ namespace MetroLogWebTarget.Web.Framework
             builder.RegisterGeneric(typeof(SlEfRepository<>)).As(typeof(IRepository<>)).InstancePerRequest();
 
             builder.RegisterType<UserStore<User>>().As<IUserStore<User, int>>().InstancePerRequest();
+            builder.RegisterType<RoleStore<Role>>().As<IRoleStore<Role, int>>().InstancePerRequest();
             builder.RegisterType(typeof(UserManager<User, int>)).AsSelf().InstancePerRequest();
             builder.RegisterType<LogEnvironmentService>().As<ILogEnvironmentService>().InstancePerRequest();
         }

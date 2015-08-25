@@ -1,14 +1,13 @@
 ﻿using System;
 using MetroLogWebTarget.Data;
 using MetroLogWebTarget.Domain;
-using MetroLogWebTarget.Web.Models;
+using MetroLogWebTarget.Web.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using WebApplication1;
-using WebApplication1.Models;
+
 
 namespace MetroLogWebTarget.Web
 {

@@ -12,5 +12,7 @@ namespace MetroLogWebTarget.Service
         IEnumerable<LogEnvironment> GetTopNByPubId(string pubId, int num);
 
         void Create(LogEnvironment logEnv);
+
+        LogEnvironment GetById(int id);
     }
 }

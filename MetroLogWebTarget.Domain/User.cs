@@ -15,11 +15,11 @@ namespace MetroLogWebTarget.Domain
 
         public virtual string SecurityStamp { get; set; }
 
-        private ICollection<UserRole> _userRoles;
+        private ICollection<Role> _userRoles;
         
-        public virtual ICollection<UserRole> UserRoles
+        public virtual ICollection<Role> Roles
         {
-            get { return _userRoles ?? (_userRoles = new List<UserRole>()); }
+            get { return _userRoles ?? (_userRoles = new List<Role>()); }
             protected set { _userRoles = value; }
         }
 

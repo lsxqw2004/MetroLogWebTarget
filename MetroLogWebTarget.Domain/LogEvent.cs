@@ -19,9 +19,11 @@ namespace MetroLogWebTarget.Domain
 
         public string Message { get; set; }
 
-        public ExceptionWrapper Exception { get; set; }
+        //public ExceptionWrapper Exception { get; set; }
 
-        public DateTimeOffset TimeStamp { get; set; }
+        public DateTime TimeStamp { get; set; }
 
+        public int LogEnvironmentId { get; set; }
     }
+
 }

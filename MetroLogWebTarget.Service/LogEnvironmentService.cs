@@ -27,5 +27,10 @@ namespace MetroLogWebTarget.Service
         {
             _logEnvironmentRepository.Insert(logEnv);
         }
+
+        public LogEnvironment GetById(int id)
+        {
+            return _logEnvironmentRepository.GetById(id);
+        }
     }
 }

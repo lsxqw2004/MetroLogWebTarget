@@ -26,7 +26,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             if (string.IsNullOrEmpty(key))
@@ -40,7 +39,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             return scope.Resolve(type);
@@ -50,7 +48,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             if (string.IsNullOrEmpty(key))
@@ -69,7 +66,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             var constructors = type.GetConstructors();
@@ -99,7 +95,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             return scope.TryResolve(serviceType, out instance);
@@ -109,7 +104,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             return scope.IsRegistered(serviceType);
@@ -119,7 +113,6 @@ namespace MetroLogWebTarget.Core.DependencyManagement
         {
             if (scope == null)
             {
-                //no scope specified
                 scope = Scope();
             }
             return scope.ResolveOptional(serviceType);
@@ -132,16 +125,10 @@ namespace MetroLogWebTarget.Core.DependencyManagement
                 if (HttpContext.Current != null)
                     return AutofacDependencyResolver.Current.RequestLifetimeScope;
 
-                //when such lifetime scope is returned, you should be sure that it'll be disposed once used (e.g. in schedule tasks)
                 return Container.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
             }
             catch (Exception)
             {
-                //we can get an exception here if RequestLifetimeScope is already disposed
-                //for example, requested in or after "Application_EndRequest" handler
-                //but note that usually it should never happen
-
-                //when such lifetime scope is returned, you should be sure that it'll be disposed once used (e.g. in schedule tasks)
                 return Container.BeginLifetimeScope(MatchingScopeLifetimeTags.RequestLifetimeScopeTag);
             }
         }

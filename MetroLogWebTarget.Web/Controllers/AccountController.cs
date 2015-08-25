@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MetroLogWebTarget.Domain;
+using MetroLogWebTarget.Web.Identity;
 using MetroLogWebTarget.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebApplication1;
-using WebApplication1.Models;
 
 namespace MetroLogWebTarget.Web.Controllers
 {

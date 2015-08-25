@@ -1,4 +1,6 @@
-﻿namespace MetroLogWebTarget.Domain
+﻿using System.Collections.Generic;
+
+namespace MetroLogWebTarget.Domain
 {
     public class LogEnvironment:BaseEntity
     {
@@ -18,5 +20,7 @@
 
         public string InstallationId { get; set; }
 
+        
+        public List<LogEvent> Events { get; set; } 
     }
 }

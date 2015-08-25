@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Galenical.Core.Caching;
 using MetroLogWebTarget.Core.Caching;
 using MetroLogWebTarget.Data;
 using MetroLogWebTarget.Domain;
@@ -11,9 +10,6 @@ using Microsoft.AspNet.Identity;
 
 namespace MetroLogWebTarget.Service
 {
-    /// <summary>
-    /// User service
-    /// </summary>
     public partial class UserStore<T> :
         IUserStore<T, int>,
         IUserClaimStore<T, int>,
@@ -21,50 +17,22 @@ namespace MetroLogWebTarget.Service
         IUserPasswordStore<T, int>,
         IUserSecurityStampStore<T, int> where T : User
     {
-        #region Constants
-
-        /// <summary>
-        /// Key for caching
-        /// </summary>
-        /// <remarks>
-        /// {0} : show hidden records?
-        /// </remarks>
-        private const string CUSTOMERROLES_ALL_KEY = "LCM.userrole.all-{0}";
-        /// <summary>
-        /// Key for caching
-        /// </summary>
-        /// <remarks>
-        /// {0} : system name
-        /// </remarks>
-        private const string CUSTOMERROLES_BY_SYSTEMNAME_KEY = "LCM.userrole.systemname-{0}";
-        /// <summary>
-        /// Key pattern to clear cache
-        /// </summary>
-        private const string CUSTOMERROLES_PATTERN_KEY = "LCM.userrole.";
-
-        #endregion
 
         #region Fields
 
         private bool _disposed;
 
         private readonly IRepository<User> _userRepository;
-        private readonly IRepository<UserRole> _userRoleRepository;
+        private readonly IRepository<Role> _userRoleRepository;
         private readonly ICacheManager _cacheManager;
 
         #endregion
 
         #region Ctor
 
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="cacheManager">Cache manager</param>
-        /// <param name="userRepository">User repository</param>
-        /// <param name="userRoleRepository">User role repository</param>
         public UserStore(ICacheManager cacheManager,
             IRepository<User> userRepository,
-            IRepository<UserRole> userRoleRepository)
+            IRepository<Role> userRoleRepository)
         {
             this._cacheManager = cacheManager;
             this._userRepository = userRepository;
@@ -188,7 +156,7 @@ namespace MetroLogWebTarget.Service
             var role = _userRoleRepository.Table.FirstOrDefault(ur => ur.Name == roleName);
 
             if (role == null) throw new Exception("角色不存在");
-            userCtx.UserRoles.Add(role);
+            userCtx.Roles.Add(role);
             return Task.Run(() => _userRepository.Update(userCtx));
         }
 
@@ -198,19 +166,19 @@ namespace MetroLogWebTarget.Service
             var role = _userRoleRepository.Table.FirstOrDefault(ur => ur.Name == roleName);
 
             if (role == null) throw new Exception("角色不存在");
-            userCtx.UserRoles.Remove(role);
+            userCtx.Roles.Remove(role);
             return Task.Run(() => _userRepository.Update(userCtx));
         }
 
         public Task<IList<string>> GetRolesAsync(T user)
         {
-            var list = user.UserRoles.Select(r => r.Name).ToList() as IList<string>;
+            var list = user.Roles.Select(r => r.Name).ToList() as IList<string>;
             return Task.FromResult(list);
         }
 
         public Task<bool> IsInRoleAsync(T user, string roleName)
         {
-            bool inRole = user.UserRoles.Any(r => r.Name == roleName);
+            bool inRole = user.Roles.Any(r => r.Name == roleName);
             return Task.FromResult(inRole);
         }
 

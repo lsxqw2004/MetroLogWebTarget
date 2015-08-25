@@ -6,7 +6,7 @@ namespace MetroLogWebTarget.Web.Models
     public class JsonPostWrapper
     {
 
-        public LogEnvironment Environment { get; set; }
+        public LogEnvironmentModel Environment { get; set; }
 
         public List<LogEvent> Events { get; set; }
     }

@@ -8,8 +8,7 @@ namespace MetroLogWebTarget.Data
     {
         public MetroLogDbContext(): base("DefaultConnection")
         {
-            // Turn off the Migrations, (NOT a code first Db)
-            Database.SetInitializer<MetroLogDbContext>(null);
+            
         }
 
         public DbSet<LogEnvironment> LogEnvironments { get; set; }
@@ -19,6 +18,9 @@ namespace MetroLogWebTarget.Data
         {
             // Database does not pluralize table names
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+
+            Database.SetInitializer(new SqliteDbInitializer(modelBuilder));
         }
 
         public IDbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity

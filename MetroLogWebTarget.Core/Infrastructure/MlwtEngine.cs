@@ -8,7 +8,7 @@ using MetroLogWebTarget.Core.DependencyManagement;
 
 namespace MetroLogWebTarget.Core.Infrastructure
 {
-    public class GalEngine : IEngine
+    public class MlwtEngine : IEngine
     {
         #region Fields
 
@@ -18,18 +18,23 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
         #region Utilities
 
-        /// <summary>
-        /// Register dependencies
-        /// </summary>
-        /// <param name="config">Config</param>
+        private void RunStartupTasks()
+        {
+            var typeFinder = _containerManager.Resolve<ITypeFinder>();
+            var startUpTaskTypes = typeFinder.FindClassesOfType<IStartupTask>();
+            var startUpTasks = new List<IStartupTask>();
+            foreach (var startUpTaskType in startUpTaskTypes)
+                startUpTasks.Add((IStartupTask)Activator.CreateInstance(startUpTaskType));
+            //sort
+            startUpTasks = startUpTasks.AsQueryable().OrderBy(st => st.Order).ToList();
+            foreach (var startUpTask in startUpTasks)
+                startUpTask.Execute();
+        }
+
         protected virtual void RegisterDependencies()
         {
             var builder = new ContainerBuilder();
             var container = builder.Build();
-
-            //we create new instance of ContainerBuilder
-            //because Build() or Update() method can only be called once on a ContainerBuilder.
-
 
             //dependencies
             var typeFinder = new WebAppTypeFinder();
@@ -38,7 +43,7 @@ namespace MetroLogWebTarget.Core.Infrastructure
             builder.RegisterInstance(typeFinder).As<ITypeFinder>().SingleInstance();
             builder.Update(container);
 
-            //register dependencies provided by other assemblies
+            //register
             builder = new ContainerBuilder();
             var drTypes = typeFinder.FindClassesOfType<IDependencyRegistrar>();
             var drInstances = new List<IDependencyRegistrar>();
@@ -53,7 +58,6 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
             this._containerManager = new ContainerManager(container);
 
-            //set dependency resolver
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
@@ -61,14 +65,12 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
         #region Methods
         
-        /// <summary>
-        /// Initialize components and plugins in the nop environment.
-        /// </summary>
-        /// <param name="config">Config</param>
+
         public void Initialize()
         {
             RegisterDependencies();
             //startup tasks
+            RunStartupTasks();
         }
 
         public T Resolve<T>() where T : class

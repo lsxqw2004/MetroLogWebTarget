@@ -7,10 +7,7 @@ using System.Web.Hosting;
 
 namespace MetroLogWebTarget.Core.Infrastructure
 {
-    /// <summary>
-    ///     Provides information about types in the current web application.
-    ///     Optionally this class can look at all assemblies in the bin folder.
-    /// </summary>
+
     public class WebAppTypeFinder : AppDomainTypeFinder
     {
         #region Fields
@@ -24,18 +21,13 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
         public WebAppTypeFinder()
         {
-            _ensureBinFolderAssembliesLoaded = true;//todo hardcode here
+            _ensureBinFolderAssembliesLoaded = true;
         }
 
         #endregion
 
         #region Properties
 
-        /// <summary>
-        ///     Gets or sets wether assemblies in the bin folder of the web application should be specificly checked for beeing
-        ///     loaded on application load. This is need in situations where plugins need to be loaded in the AppDomain after the
-        ///     application been reloaded.
-        /// </summary>
         public bool EnsureBinFolderAssembliesLoaded
         {
             get { return _ensureBinFolderAssembliesLoaded; }
@@ -46,10 +38,7 @@ namespace MetroLogWebTarget.Core.Infrastructure
 
         #region Methods
 
-        /// <summary>
-        ///     Gets a physical disk path of \Bin directory
-        /// </summary>
-        /// <returns>The physical path. E.g. "c:\inetpub\wwwroot\bin"</returns>
+
         public virtual string GetBinDirectory()
         {
             if (HostingEnvironment.IsHosted)
@@ -57,7 +46,7 @@ namespace MetroLogWebTarget.Core.Infrastructure
                 //hosted
                 return HttpRuntime.BinDirectory;
             }
-            //not hosted. For example, run either in unit tests
+
             return AppDomain.CurrentDomain.BaseDirectory;
         }
 
