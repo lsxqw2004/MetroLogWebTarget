@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroLogWebTarget.Data", "MetroLogWebTarget.Data\MetroLogWebTarget.Data.csproj", "{32CEF8C5-C0B9-40BD-884A-70293FA1E345}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroLogWebTarget.Domain", "MetroLogWebTarget.Domain\MetroLogWebTarget.Domain.csproj", "{282BBBBF-9649-48AA-9828-16783C728EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroLogWebTarget.Web", "MetroLogWebTarget.Web\MetroLogWebTarget.Web.csproj", "{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroLogWebTarget.Service", "MetroLogWebTarget.Service\MetroLogWebTarget.Service.csproj", "{7CEF40A4-5EC9-4AE5-AEDB-4EDA9437F76E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroLogWebTarget.Core", "MetroLogWebTarget.Core\MetroLogWebTarget.Core.csproj", "{5BB66B87-4ED4-4560-920F-879DF87850A8}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MetroLogWebTarget.Web", "MetroLogWebTarget.Web\MetroLogWebTarget.Web.xproj", "{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,18 +51,6 @@ Global
 		{282BBBBF-9649-48AA-9828-16783C728EB4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{282BBBBF-9649-48AA-9828-16783C728EB4}.Release|x64.ActiveCfg = Release|Any CPU
 		{282BBBBF-9649-48AA-9828-16783C728EB4}.Release|x86.ActiveCfg = Release|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Release|x64.ActiveCfg = Release|Any CPU
-		{7B6002C8-BCBF-4565-9A50-D79E3C78E77A}.Release|x86.ActiveCfg = Release|Any CPU
 		{7CEF40A4-5EC9-4AE5-AEDB-4EDA9437F76E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CEF40A4-5EC9-4AE5-AEDB-4EDA9437F76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CEF40A4-5EC9-4AE5-AEDB-4EDA9437F76E}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -91,6 +79,26 @@ Global
 		{5BB66B87-4ED4-4560-920F-879DF87850A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5BB66B87-4ED4-4560-920F-879DF87850A8}.Release|x64.ActiveCfg = Release|Any CPU
 		{5BB66B87-4ED4-4560-920F-879DF87850A8}.Release|x86.ActiveCfg = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|ARM.Build.0 = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|x64.Build.0 = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Debug|x86.Build.0 = Debug|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|ARM.ActiveCfg = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|ARM.Build.0 = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|x64.ActiveCfg = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|x64.Build.0 = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|x86.ActiveCfg = Release|Any CPU
+		{74D730B7-9FB5-4DE9-A9C5-3F84EF92C189}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
