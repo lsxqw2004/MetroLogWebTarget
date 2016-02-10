@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net45": {
+      "wrappedProject": "../../MetroLogWebTarget.Domain/MetroLogWebTarget.Domain.csproj",
+      "bin": {
+        "assembly": "../../MetroLogWebTarget.Domain/obj/{configuration}/MetroLogWebTarget.Domain.dll",
+        "pdb": "../../MetroLogWebTarget.Domain/obj/{configuration}/MetroLogWebTarget.Domain.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.1.1",
+        "Microsoft.AspNet.Identity.Core": "2.2.1"
+      }
+    },
+    "net451": {
+      "wrappedProject": "../../MetroLogWebTarget.Domain/MetroLogWebTarget.Domain.csproj",
+      "bin": {
+        "assembly": "../../MetroLogWebTarget.Domain/obj/{configuration}/MetroLogWebTarget.Domain.dll",
+        "pdb": "../../MetroLogWebTarget.Domain/obj/{configuration}/MetroLogWebTarget.Domain.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.1.1",
+        "Microsoft.AspNet.Identity.Core": "2.2.1"
+      }
+    }
+  }
+}
